@@ -1,0 +1,22 @@
+services:
+  server:
+    build: ./server
+    ports:
+      - "5000:5000"
+    working_dir: /app
+    volumes:
+      - ./server:/app
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - client
+
+  client:
+    build: ./client
+    ports:
+      - "3000:3000"
+    working_dir: /app
+    volumes:
+      - ./client:/app
+    environment:
+      - NODE_ENV=development
