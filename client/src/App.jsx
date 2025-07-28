@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+const API_BASE = process.env.REACT_APP_API_URL;
+
 
 function App() {
   const [resumeText, setResumeText] = useState('');
@@ -9,9 +11,10 @@ function App() {
     if (!resumeText) return;
     setLoading(true);
     setFeedback('');
+    console.log('API URL:', process.env.REACT_APP_API_URL);
 
     try {
-      const res = await fetch('http://localhost:5000/analyze', {
+      const res = await fetch(`${API_BASE}/analyze` , {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ resumeText })
